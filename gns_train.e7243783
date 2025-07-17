@@ -1,0 +1,13 @@
+Running "module reset". Resetting modules to system default. The following $MODULEPATH directories have been removed: None
+
+The following have been reloaded with a version change:
+  1) python3/3.7.0 => python3/3.9.2
+
+/scratch1/10857/seongeunpark/gns_sparc/venv/lib/python3.9/site-packages/torch_geometric/typing.py:47: UserWarning: An issue occurred while importing 'pyg-lib'. Disabling its usage. Stacktrace: /usr/lib64/libm.so.6: version `GLIBC_2.27' not found (required by /scratch1/10857/seongeunpark/gns_sparc/venv/lib/python3.9/site-packages/libpyg.so)
+  warnings.warn(f"An issue occurred while importing 'pyg-lib'. "
+/scratch1/10857/seongeunpark/gns_sparc/venv/lib/python3.9/site-packages/torch_geometric/typing.py:101: UserWarning: An issue occurred while importing 'torch-sparse'. Disabling its usage. Stacktrace: /usr/lib64/libm.so.6: version `GLIBC_2.27' not found (required by /scratch1/10857/seongeunpark/gns_sparc/venv/lib/python3.9/site-packages/libpyg.so)
+  warnings.warn(f"An issue occurred while importing 'torch-sparse'. "
+/scratch1/10857/seongeunpark/gns_sparc/venv/lib/python3.9/site-packages/torch_geometric/typing.py:47: UserWarning: An issue occurred while importing 'pyg-lib'. Disabling its usage. Stacktrace: /usr/lib64/libm.so.6: version `GLIBC_2.27' not found (required by /scratch1/10857/seongeunpark/gns_sparc/venv/lib/python3.9/site-packages/libpyg.so)
+  warnings.warn(f"An issue occurred while importing 'pyg-lib'. "
+/scratch1/10857/seongeunpark/gns_sparc/venv/lib/python3.9/site-packages/torch_geometric/typing.py:101: UserWarning: An issue occurred while importing 'torch-sparse'. Disabling its usage. Stacktrace: /usr/lib64/libm.so.6: version `GLIBC_2.27' not found (required by /scratch1/10857/seongeunpark/gns_sparc/venv/lib/python3.9/site-packages/libpyg.so)
+  warnings.warn(f"An issue occurred while importing 'torch-sparse'. "
