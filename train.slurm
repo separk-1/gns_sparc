@@ -27,9 +27,7 @@ python -u -m gns.train \
   --data_path="${DATA_PATH}" \
   --model_path="${MODEL_PATH}" \
   --output_path="${OUTPUT_PATH}" \
-  --nsave_steps=1000 \
-  --ntraining_steps=10000
-  
-  
-  #--model_file="latest" \
-  #--train_state_file="latest"
+  --nsave_steps=10000 \
+  --ntraining_steps=5000000
+  --model_file="latest" \
+  --train_state_file="latest"
