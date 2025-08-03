@@ -4,7 +4,7 @@ This project focuses on training the **Graph Network Simulator (GNS)** on the **
 
 ---
 
-## 🛠️ Environment Setup
+## Environment Setup
 
 Create and activate the virtual environment:
 
@@ -15,7 +15,7 @@ source start_venv.sh
 
 ---
 
-## 📁 Dataset & Directory Structure
+## Dataset & Directory Structure
 
 ```bash
 TMP_DIR="./data"
@@ -26,7 +26,7 @@ MODEL_PATH="${TMP_DIR}/${DATASET_NAME}/models/"
 
 ---
 
-## 🧾 SLURM Batch Script (train.slurm)
+## SLURM Batch Script (train.slurm)
 
 ```bash
 #!/bin/bash
@@ -64,7 +64,7 @@ python -u -m gns.train \
 
 ---
 
-## 📈 Training and Validation Loss
+## Training and Validation Loss
 
 | Training Loss | Validation Loss |
 |---------------|-----------------|
@@ -74,7 +74,7 @@ Both loss curves are plotted on a log scale. Training shows steady convergence w
 
 ---
 
-## 🧪 Sample Rollout Comparisons
+## Sample Rollout Comparisons
 
 Comparisons between GNS predictions and ground truth (MPM simulations) across multiple test samples:
 
@@ -90,7 +90,7 @@ These comparisons confirm that the GNS model captures both particle positions an
 
 ---
 
-## 🔄 Learning Progress Example
+## Learning Progress Example
 
 Prediction quality improves as training progresses. Below, GNS predictions at different checkpoints are shown compared to the MPM ground truth.
 
@@ -112,7 +112,7 @@ The model initially fails to capture structure but gradually learns to represent
 
 ---
 
-## 📦 Rollout Rendering (Optional)
+## Rollout Rendering (Optional)
 
 After training:
 
@@ -141,6 +141,7 @@ After training:
 
 ---
 
-## 🔗 Reference
+## Reference
 
-MPM ground truth data is generated using [Taichi-Elements](https://github.com/taichi-dev/taichi_elements).
+- MPM ground truth data is generated using [Taichi-Elements](https://github.com/taichi-dev/taichi_elements).
+- The GNS model architecture and training pipeline are based on the official repository: [geoelements/gns](https://github.com/geoelements/gns).
