@@ -1,32 +1,21 @@
 # GNS Training on Frontera
 
-[Original README](README_original.md)
-
-This project is focused on training the Graph Network Simulator (GNS) on the Frontera supercomputer. 
-
-## Current Status
-
-As of now, the virtual environment has been set up, dataset directories created, and the SLURM batch script has been written and successfully submitted.
+This project focuses on training the **Graph Network Simulator (GNS)** on the **Frontera supercomputer** at TACC to model elastic-plastic interactions between solids and granular media.
 
 ---
 
-## 1. Environment Setup
+## 🛠️ Environment Setup
 
-Create the virtual environment using:
+Create and activate the virtual environment:
 
 ```bash
 sh build_venv_frontera.sh
-```
-
-Then activate the environment:
-
-```bash
 source start_venv.sh
 ```
 
 ---
 
-## 2. Dataset Path Configuration
+## 📁 Dataset & Directory Structure
 
 ```bash
 TMP_DIR="./data"
@@ -37,7 +26,7 @@ MODEL_PATH="${TMP_DIR}/${DATASET_NAME}/models/"
 
 ---
 
-## 3. SLURM Batch Script (train.slurm)
+## 🧾 SLURM Batch Script (train.slurm)
 
 ```bash
 #!/bin/bash
@@ -59,8 +48,6 @@ source start_venv_frontera.sh
 # Define paths
 DATASET="mydata01"
 DATA_PATH="${SCRATCH}/gns_sparc/data/${DATASET}/dataset/"
-
-# Define job-specific output paths
 JOB_ID=${SLURM_JOB_ID}
 MODEL_PATH="${SCRATCH}/gns_sparc/data/${DATASET}/models_${JOB_ID}/"
 OUTPUT_PATH="${SCRATCH}/gns_sparc/data/${DATASET}/rollouts_${JOB_ID}/"
@@ -73,80 +60,86 @@ python -u -m gns.train \
   --output_path="${OUTPUT_PATH}" \
   --nsave_steps=10000 \
   --ntraining_steps=5000000
-
-  #--model_file="latest" \
-  #--train_state_file="latest"
 ```
 
 ---
 
-## 4. Job Submission and Monitoring
+## 📈 Training and Validation Loss
 
-Submit the job:
+| Training Loss | Validation Loss |
+|---------------|-----------------|
+| ![](images/train_loss.png) | ![](images/val_loss.png) |
 
-```bash
-sbatch train.slurm
-```
-
-Check job status:
-
-```bash
-squeue -u $USER
-```
-
-Follow the log output in real-time:
-
-```bash
-tail -f gns_train.out
-```
+Both loss curves are plotted on a log scale. Training shows steady convergence while validation exhibits fluctuations typical of elastic-plastic system learning.
 
 ---
 
-## 5. MPM Ground Truth Data
+## 🧪 Sample Rollout Comparisons
 
-The GNS is trained on 2D Material Point Method (MPM) numerical simulations generated in Taichi.
-See [the Taichi-Elements repository here](https://github.com/taichi-dev/taichi_elements/).
+Comparisons between GNS predictions and ground truth (MPM simulations) across multiple test samples:
+
+<p align="center">
+  <img src="images/sparc00.gif" width="280"/>
+  <img src="images/sparc01.gif" width="280"/>
+  <br/>
+  <img src="images/sparc02.gif" width="280"/>
+  <img src="images/sparc03.gif" width="280"/>
+</p>
+
+These comparisons confirm that the GNS model captures both particle positions and aggregate dynamics.
+
+---
+
+## 🔄 Learning Progress Example
+
+Prediction quality improves as training progresses. Below, GNS predictions at different checkpoints are shown compared to the MPM ground truth.
+
+<p align="center">
+  <img src="images/sparc_02_real.gif" width="250"/>
+</p>
+
+<p align="center">
+  <img src="images/sparc_02_run1.gif" width="180"/>
+  <img src="images/sparc_02_run2.gif" width="180"/>
+  <img src="images/sparc_02_run3.gif" width="180"/>
+  <img src="images/sparc_02_run4.gif" width="180"/>
+  <img src="images/sparc_02_run5.gif" width="180"/>
+</p>
+
+
+The model initially fails to capture structure but gradually learns to represent both the granular distribution and object boundary.
 
 ---
 
-## 6. Rendering Rollouts Locally
+## 📦 Rollout Rendering (Optional)
 
-Once training is complete, you can visualize the simulation rollouts by converting them into `.gif` files.
+After training:
 
-### Step 1: Launch an Interactive GPU Session
+1. Launch interactive GPU session:
+    ```bash
+    idev -p rtx -m 120
+    ```
 
-Request a GPU node on the `rtx` partition for 120 minutes:
+2. Activate your environment:
+    ```bash
+    source start_venv_frontera.sh
+    ```
 
-```bash
-idev -p rtx -m 120
-```
+3. Set output path (example):
+    ```bash
+    OUTPUT_PATH="${SCRATCH}/gns_sparc/data/mydata01/rollouts_7243783/"
+    ```
 
-### Step 2: Activate the Virtual Environment
-
-Once inside the interactive session, activate the Python environment:
-
-```bash
-source start_venv_frontera.sh
-```
-
-### Step 3: Define the Output Path
-
-Set the path where your rollout results are saved (example below uses job ID `7243783`):
-
-```bash
-DATASET="mydata01"
-OUTPUT_PATH="${SCRATCH}/gns_sparc/data/${DATASET}/rollouts_7243783/"
-```
-
-### Step 4: Run the Renderer
-
-Render the rollout into a gif:
-
-```bash
-python3 -m gns.render_rollout \
-  --output_mode="gif" \
-  --rollout_dir=${OUTPUT_PATH} \
-  --rollout_name="rollout_ex0"
-```
+4. Run the renderer:
+    ```bash
+    python3 -m gns.render_rollout \
+      --output_mode="gif" \
+      --rollout_dir=${OUTPUT_PATH} \
+      --rollout_name="rollout_ex0"
+    ```
 
 ---
+
+## 🔗 Reference
+
+MPM ground truth data is generated using [Taichi-Elements](https://github.com/taichi-dev/taichi_elements).
