@@ -102,7 +102,6 @@ Prediction quality improves as training progresses. Below, GNS predictions at di
   <img src="images/sparc_02_run1.gif" width="100"/>
   <img src="images/sparc_02_run2.gif" width="100"/>
   <img src="images/sparc_02_run3.gif" width="100"/>
-  <br/>
   <img src="images/sparc_02_run4.gif" width="100"/>
   <img src="images/sparc_02_run5.gif" width="100"/>
   <img src="images/sparc_02_run6.gif" width="100"/>
