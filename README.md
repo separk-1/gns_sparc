@@ -95,15 +95,17 @@ These comparisons confirm that the GNS model captures both particle positions an
 Prediction quality improves as training progresses. Below, GNS predictions at different checkpoints are shown compared to the MPM ground truth.
 
 <p align="center">
-  <img src="images/sparc_02_real.gif" width="200"/>
+  <img src="images/sparc_02_real.gif" width="100"/>
 </p>
 
 <p align="center">
   <img src="images/sparc_02_run1.gif" width="100"/>
   <img src="images/sparc_02_run2.gif" width="100"/>
   <img src="images/sparc_02_run3.gif" width="100"/>
+  <br/>
   <img src="images/sparc_02_run4.gif" width="100"/>
   <img src="images/sparc_02_run5.gif" width="100"/>
+  <img src="images/sparc_02_run6.gif" width="100"/>
 </p>
 
 
