@@ -1,6 +1,6 @@
 # GNS Training on Frontera
 
-This project focuses on training the **Graph Network Simulator (GNS)** on the **Frontera supercomputer** at TACC to model elastic-plastic interactions between solids and granular media.
+This project focuses on training the **Graph Network Simulator (GNS)** on the **Frontera supercomputer** at TACC to model interactions between elastic solids and granular media.
 
 ---
 
